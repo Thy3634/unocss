@@ -190,6 +190,8 @@ export function parseColor(body: string, theme: Theme, key?: ThemeColorKeys): Pa
  */
 export function colorResolver(property: string, varName: string, key?: ThemeColorKeys, shouldPass?: (css: CSSObject) => boolean): DynamicMatcher {
   return ([, body]: string[], { theme, generator }: RuleContext<Theme>): CSSObject | undefined => {
+    if (!body)
+      return
     const data = parseColor(body, theme, key)
 
     if (!data)
